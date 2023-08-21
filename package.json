@@ -1,0 +1,45 @@
+{
+  "name": "create-start",
+  "version": "0.0.12",
+  "description": "create new project",
+  "main": "dist/index.cjs",
+  "type": "module",
+  "bin": {
+    "create-start": "dist/index.cjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "rollup -w -c rollup.config.js --environment MODE:dev",
+    "build": "rollup -c rollup.config.js --environment MODE:prod",
+    "create": "node dist/index.cjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {},
+  "dependencies": {
+    "kolorist": "^1.5.1",
+    "minimist": "^1.2.6",
+    "prompts": "^2.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:geektech-team/create-start.git"
+  },
+  "keywords": [
+    "create",
+    "new",
+    "project"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.3",
+    "@types/node": "^20.4.5",
+    "rollup": "^3.27.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "tslib": "^2.6.1",
+    "typescript": "^5.1.6"
+  }
+}
