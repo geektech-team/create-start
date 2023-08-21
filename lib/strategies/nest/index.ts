@@ -3,7 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { CreaterStrategy, Variant } from "../../creater.type";
 import { red } from "kolorist";
-import { exec, execSync, spawnSync } from "child_process";
+import { spawnSync } from "child_process";
 
 export class NestCreaterStrategy implements CreaterStrategy {
   public name: string = "Nest";
@@ -11,7 +11,7 @@ export class NestCreaterStrategy implements CreaterStrategy {
   public color = red;
   public variants?: Variant[] | undefined = [];
   public dependencies = {
-    // "@geektech/cyy_nest_toolkit": "^2.0.4",
+    "@geektech/nest-core": "^0.0.1",
   };
   public devDependencies = {};
   public scripts = {

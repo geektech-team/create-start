@@ -1,6 +1,6 @@
 {
   "name": "create-start",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "create new project",
   "main": "dist/index.cjs",
   "type": "module",
