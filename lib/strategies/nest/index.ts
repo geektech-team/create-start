@@ -1,6 +1,6 @@
 import { CreateOption } from "../../creater.type";
-import * as fs from "fs";
-import * as path from "path";
+// import * as fs from "fs";
+// import * as path from "path";
 import { CreaterStrategy, Variant } from "../../creater.type";
 import { red } from "kolorist";
 import { spawnSync } from "child_process";
@@ -29,7 +29,7 @@ export class NestCreaterStrategy implements CreaterStrategy {
     });
   }
   post(option: CreateOption): void {
-    fs.unlinkSync(path.resolve(option.root, ".prettierrc"));
+    // fs.unlinkSync(path.resolve(option.root, ".prettierrc"));
     console.log(`  npm run dev`);
   }
 }
