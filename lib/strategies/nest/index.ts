@@ -11,7 +11,7 @@ export class NestCreaterStrategy implements CreaterStrategy {
   public color = red;
   public variants?: Variant[] | undefined = [];
   public dependencies = {
-    "@geektech/nest-core": "^0.0.1",
+    "@geektech/nest-core": "^1.0.1",
   };
   public devDependencies = {};
   public scripts = {
@@ -22,7 +22,7 @@ export class NestCreaterStrategy implements CreaterStrategy {
     // throw new Error("Method not implemented.");
   }
   async create(option: CreateOption) {
-    return spawnSync("npx", ["@nestjs/cli@8.2.8", "new", option.projectName], {
+    return spawnSync("npx", ["@nestjs/cli@10.0.0", "new", option.projectName], {
       stdio: "inherit",
       shell: true,
       cwd: process.cwd(),

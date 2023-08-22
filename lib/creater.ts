@@ -5,7 +5,6 @@ import minimist from "minimist";
 import { copy, emptyDir, hasDir } from "./utils/file";
 import { PromptsStep } from "./prompts-step";
 import { green } from "kolorist";
-import { execSync } from "child_process";
 const cwd = process.cwd();
 
 export interface Variant {
@@ -76,8 +75,6 @@ export class Creater {
   }
 
   post(option: CreateOption) {
-    // console.log(green(`\nInstalling dependencies in ${option.root}...`));
-    // execSync(`cd ${option.projectName} && npm i`);
     const cwd = process.cwd();
     console.log(`\nDone. Now run:\n`);
     console.log(`  cd ${path.relative(cwd, option.root)}`);
@@ -86,6 +83,7 @@ export class Creater {
       console.log(`  First of all, you have to init git file`);
       console.log(`  Run: git remote add origin <origin git path>`);
     }
+    console.log(`  npm run install`);
     this.strategy?.post && this.strategy.post(option);
   }
 
