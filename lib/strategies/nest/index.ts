@@ -16,6 +16,10 @@ export class NestCreaterStrategy implements CreaterStrategy {
   public devDependencies = {};
   public scripts = {
     dev: "nest start --watch",
+    "g:mo": "nest g mo",
+    "g:co": "nest g co",
+    "g:s": "nest g s",
+    "g:r": "nest g resource"
   };
   public lintStaged = {};
   pre(option: CreateOption): void {
