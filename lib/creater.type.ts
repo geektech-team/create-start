@@ -28,4 +28,5 @@ export interface CreateOption {
   template: string;
   framework: CreaterStrategy;
   overwrite: string;
+  packageJson: any
 }

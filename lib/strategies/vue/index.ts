@@ -33,9 +33,6 @@ export class VueCreaterStrategy implements CreaterStrategy {
   }
   create(option: CreateOption): void {
     execSync(`npm create vite ${option.projectName} -- --template vue-ts`);
-    const targetPackagePath = path.join(option.root, `package.json`);
-    const packageJson = require(targetPackagePath);
-    fs.writeFileSync(targetPackagePath, JSON.stringify(packageJson, null, 2));
   }
   post(option: CreateOption): void {
     console.log(`  npm install`);

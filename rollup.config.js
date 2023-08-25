@@ -9,16 +9,16 @@ export default {
   input: `lib/index.ts`,
   output: [
     {
-      file: "dist/index.cjs",
+      file: "dist/index.js",
       exports: "named",
-      format: "cjs",
-      sourcemap: !isProd,
+      format: "es",
+      // sourcemap: !isProd,
     },
   ],
   plugins: [
     typescript({
       useTsconfigDeclarationDir: true,
-      tsconfigOverride: { compilerOptions: { sourceMap: !isProd } },
+      // tsconfigOverride: { compilerOptions: { sourceMap: !isProd } },
     }),
     copy({
       targets: [

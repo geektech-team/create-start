@@ -4,4 +4,4 @@ import { VueCreaterStrategy } from "./strategies/vue";
 
 const strategies = [new NestCreaterStrategy(), new VueCreaterStrategy()];
 
-new Creater(strategies);
+export default new Creater(strategies);

@@ -5,6 +5,8 @@ import minimist from "minimist";
 import { copy, emptyDir, hasDir } from "./utils/file";
 import { PromptsStep } from "./prompts-step";
 import { green } from "kolorist";
+import { URL } from 'url';
+const __dirname = new URL('.', import.meta.url).pathname;
 const cwd = process.cwd();
 
 export interface Variant {
@@ -46,6 +48,7 @@ export class Creater {
       template: variant,
       overwrite,
       framework,
+      packageJson: {}
     };
     await this.pre(createOption);
     await this.create(createOption);
@@ -113,7 +116,7 @@ export class Creater {
 
   initPackage(option: CreateOption) {
     const targetPackagePath = path.join(option.root, `package.json`);
-    const packageJson = require(targetPackagePath);
+    const packageJson = JSON.parse(fs.readFileSync(targetPackagePath, "utf8"));
     packageJson.dependencies = {
       ...packageJson.dependencies,
       ...this.dependencies,
@@ -134,6 +137,7 @@ export class Creater {
       ...this.lintStaged,
       ...(this.strategy.lintStaged ?? {}),
     };
+    option.packageJson = packageJson;
     fs.writeFileSync(targetPackagePath, JSON.stringify(packageJson, null, 2));
   }
 
