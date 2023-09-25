@@ -18,8 +18,8 @@ export class VueCreaterStrategy implements CreaterStrategy {
   ];
   public devDependencies = {
     eslint: "^8.36.0",
-    '@geektech/eslint-plugin': "^1.0.4",
-    '@geektech/svg2icon': "^1.0.6"
+    '@geektech/eslint-plugin': "^1.0.5",
+    '@geektech/svg2icon': "^1.0.7"
   };
   public scripts = {
     "lint-staged": "lint-staged",

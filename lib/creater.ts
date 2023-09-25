@@ -84,6 +84,7 @@ export class Creater {
     const hasInitGit = hasDir('.git', option.root);
     if(!hasInitGit) {
       console.log(`  First of all, you have to init git file`);
+      console.log(`  Run: git init`);
       console.log(`  Run: git remote add origin <origin git path>`);
     }
     console.log(`  npm run install`);
