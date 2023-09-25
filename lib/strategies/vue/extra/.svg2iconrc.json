@@ -1,10 +1,9 @@
 
 {
-  "dist": "dist", 
-  "src": "svg",
+  "dist": "src/assets/icon",
+  "src": "src/assets/svg",
   "fontName": "geek-icon",
-  "classNamePrefix": "geekicon", 
+  "classNamePrefix": "geekicon",
   "linkMode": "inline",
-  "ext": "wxss"
+  "ext": "less"
 }
-  
