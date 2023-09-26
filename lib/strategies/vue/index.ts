@@ -1,6 +1,4 @@
 import { CreateOption } from "../../creater.type";
-import * as fs from "fs";
-import * as path from "path";
 import { CreaterStrategy, Variant } from "../../creater.type";
 import { green } from "kolorist";
 import { execSync } from "child_process";
@@ -18,7 +16,7 @@ export class VueCreaterStrategy implements CreaterStrategy {
   ];
   public devDependencies = {
     eslint: "^8.36.0",
-    '@geektech/eslint-plugin': "^1.0.5",
+    '@geektech/eslint-plugin': "^1.0.6",
     '@geektech/svg2icon': "^1.0.7"
   };
   public scripts = {
