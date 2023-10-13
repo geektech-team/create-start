@@ -34,6 +34,6 @@ export class UniappCreaterStrategy implements CreaterStrategy {
   }
   post(option: CreateOption): void {
     console.log(`  npm install`);
-    console.log(`  npm run dev`);
+    console.log(`  npm run dev:\${platform}`);
   }
 }
