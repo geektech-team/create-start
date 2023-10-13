@@ -94,9 +94,8 @@ export class PromptsStep {
       },
       initial: 0,
       choices: strategys.map((framework) => {
-        const frameworkColor = framework.color;
         return {
-          title: frameworkColor(framework.name),
+          title: framework.color(framework.name),
           value: framework,
         };
       }),

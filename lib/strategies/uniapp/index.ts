@@ -3,10 +3,10 @@ import { CreaterStrategy, Variant } from "../../creater.type";
 import { trueColor } from "kolorist";
 import { execSync } from "child_process";
 
-export class VueCreaterStrategy implements CreaterStrategy {
-  public name: string = "Vue";
-  public path: string = "vue";
-  public color = trueColor(66, 184, 131);
+export class UniappCreaterStrategy implements CreaterStrategy {
+  public name: string = "Uniapp";
+  public path: string = "uniapp";
+  public color = trueColor(66, 185, 131);
   public variants?: Variant[] | undefined = [
     // {
     //   name: "vue-ts",
@@ -30,7 +30,7 @@ export class VueCreaterStrategy implements CreaterStrategy {
     // throw new Error("Method not implemented.");
   }
   create(option: CreateOption): void {
-    execSync(`npm create vite ${option.projectName} -- --template vue-ts`);
+    execSync(`npx degit dcloudio/uni-preset-vue#vite-ts ${option.projectName} --force`);
   }
   post(option: CreateOption): void {
     console.log(`  npm install`);

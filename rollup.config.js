@@ -26,10 +26,6 @@ export default {
           src: ["lib/strategies", "!**/*.ts"],
           dest: "dist",
         },
-        // {
-        //   src: "src/strategies/common",
-        //   dest: "dist",
-        // },
       ],
     }),
     isProd && terser(),

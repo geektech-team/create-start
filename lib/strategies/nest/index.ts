@@ -2,13 +2,13 @@ import { CreateOption } from "../../creater.type";
 // import * as fs from "fs";
 // import * as path from "path";
 import { CreaterStrategy, Variant } from "../../creater.type";
-import { red } from "kolorist";
+import { trueColor } from "kolorist";
 import { spawnSync } from "child_process";
 
 export class NestCreaterStrategy implements CreaterStrategy {
   public name: string = "Nest";
   public path: string = "nest";
-  public color = red;
+  public color = trueColor(237, 41, 69);
   public variants?: Variant[] | undefined = [];
   public dependencies = {
     "@geektech/nest-core": "^1.0.1",
