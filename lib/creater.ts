@@ -71,7 +71,7 @@ export class Creater {
   }
 
   async create(option: CreateOption) {
-    console.log(green(`\nScaffolding project in ${option.root}...`));
+    console.log(green(`\Constructing project in ${option.root}...`));
     await this.strategy?.create(option);
     this.initPackage(option);
     this.initExtraFiles(option);
