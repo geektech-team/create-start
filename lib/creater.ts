@@ -44,6 +44,7 @@ export class Creater {
     this.setStrategy(framework.name);
     const createOption = {
       projectName,
+      packageRoot: __dirname,
       root: path.join(cwd, projectName),
       template: variant,
       overwrite,
@@ -118,24 +119,25 @@ export class Creater {
   initPackage(option: CreateOption) {
     const targetPackagePath = path.join(option.root, `package.json`);
     const packageJson = JSON.parse(fs.readFileSync(targetPackagePath, "utf8"));
+    packageJson.name = option.projectName;
     packageJson.dependencies = {
-      ...packageJson.dependencies,
-      ...this.dependencies,
+      ...packageJson.dependencies ?? {},
+      ...this.dependencies ?? {},
       ...(this.strategy.dependencies ?? {}),
     };
     packageJson.devDependencies = {
-      ...packageJson.devDependencies,
-      ...this.devDependencies,
+      ...packageJson.devDependencies ?? {},
+      ...this.devDependencies ?? {},
       ...(this.strategy.devDependencies ?? {}),
     };
     packageJson.scripts = {
-      ...packageJson.scripts,
-      ...this.scripts,
+      ...packageJson.scripts ?? {},
+      ...this.scripts ?? {},
       ...(this.strategy.scripts ?? {}),
     };
     packageJson["lint-staged"] = {
-      ...packageJson.lintStaged,
-      ...this.lintStaged,
+      ...packageJson.lintStaged ?? {},
+      ...this.lintStaged ?? {},
       ...(this.strategy.lintStaged ?? {}),
     };
     option.packageJson = packageJson;
@@ -143,11 +145,9 @@ export class Creater {
   }
 
   initExtraFiles(option: CreateOption) {
-    copy(path.join(__dirname, "strategies/common"), option.root);
-    const sourcePath = path.join(
-      __dirname,
-      `strategies/${option.framework.path}/extra`
-    );
+    copy(option.packageRoot + "strategies/common", option.root);
+    const sourcePath = option.packageRoot +
+      `strategies/${option.framework.path}/extra`;
     if (fs.existsSync(sourcePath)) {
       copy(sourcePath, option.root);
     }

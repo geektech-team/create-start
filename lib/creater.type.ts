@@ -24,6 +24,7 @@ export interface CreaterStrategy {
 
 export interface CreateOption {
   projectName: string;
+  packageRoot: string;
   root: string;
   template: string;
   framework: CreaterStrategy;

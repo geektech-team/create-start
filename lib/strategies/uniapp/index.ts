@@ -33,7 +33,6 @@ export class UniappCreaterStrategy implements CreaterStrategy {
     execSync(`npx degit dcloudio/uni-preset-vue#vite-ts ${option.projectName} --force`);
   }
   post(option: CreateOption): void {
-    console.log(`  npm install`);
     console.log(`  npm run dev:\${platform}`);
   }
 }

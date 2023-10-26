@@ -33,7 +33,6 @@ export class VueCreaterStrategy implements CreaterStrategy {
     execSync(`npm create vite ${option.projectName} -- --template vue-ts`);
   }
   post(option: CreateOption): void {
-    console.log(`  npm install`);
     console.log(`  npm run dev`);
   }
 }
