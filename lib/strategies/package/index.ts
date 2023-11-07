@@ -18,7 +18,7 @@ export class PackageCreaterStrategy implements CreaterStrategy {
     "tslib": "^2.6.1",
     "typescript": "^5.1.6",
     eslint: "^8.36.0",
-    '@geektech/eslint-plugin': "^1.0.6",
+    '@geektech/eslint-plugin': "^1.1.1",
   };
   public scripts = {
     "dev": "rollup -w -c rollup.config.js --environment MODE:dev",
