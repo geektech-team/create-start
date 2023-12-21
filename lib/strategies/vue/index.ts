@@ -14,10 +14,17 @@ export class VueCreaterStrategy implements CreaterStrategy {
     //   color: magenta,
     // },
   ];
+  public dependencies = {
+    axios: "^1.6.2",
+    '@geektech/utils': "^2.2.0",
+    "vue-router": "^4.2.5",
+    "@arco-design/web-vue": "^2.53.3",
+  };
   public devDependencies = {
     eslint: "^8.36.0",
     '@geektech/eslint-plugin': "^1.0.6",
-    '@geektech/svg2icon': "^1.0.7"
+    '@geektech/svg2icon': "^1.0.7",
+    "less": "^4.2.0",
   };
   public scripts = {
     "lint-staged": "lint-staged",
