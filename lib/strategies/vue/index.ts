@@ -25,10 +25,12 @@ export class VueCreaterStrategy implements CreaterStrategy {
     '@geektech/eslint-plugin': "^1.0.6",
     '@geektech/svg2icon': "^1.0.7",
     "less": "^4.2.0",
+    "vitest": "^1.1.1",
   };
   public scripts = {
     "lint-staged": "lint-staged",
     "svg2icon": "svg2icon",
+    "test": "vitest"
   };
   public lintStaged = {
     "*.{js,ts}": ["eslint --fix"],
