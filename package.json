@@ -1,15 +1,19 @@
 {
   "name": "create-start",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "create new project",
   "main": "dist/index.js",
   "type": "module",
   "bin": {
     "create-start": "bin/index.js"
   },
+  "engines": {
+    "node": ">= 16.14"
+  },
   "files": [
     "dist",
-    "bin"
+    "bin",
+    "package.json"
   ],
   "scripts": {
     "dev": "rollup -w -c rollup.config.js --environment MODE:dev",
