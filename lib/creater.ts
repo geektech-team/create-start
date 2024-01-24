@@ -39,6 +39,14 @@ export class Creater {
   }
 
   async init() {
+    console.info(
+      'Create Start Version :',
+      green(
+        JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')).toString())
+          .version,
+      ),
+      '\n',
+    );
     const { framework, overwrite, projectName, variant } =
       await this.getPromptsResult();
     this.setStrategy(framework.name);
