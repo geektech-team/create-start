@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-import creater from'../dist/index.js';
-creater.init();
+import creator from'../dist/index.js';
+creator.init();

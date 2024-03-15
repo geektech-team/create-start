@@ -1,4 +1,4 @@
-import { CreateOption, CreaterStrategy } from './creater.type';
+import { CreateOption, CreatorStrategy } from './creator.type';
 import * as fs from 'fs';
 import * as path from 'path';
 import minimist from 'minimist';
@@ -15,8 +15,8 @@ export interface Variant {
   color: (str: string | number) => string;
 }
 
-export class Creater {
-  private strategy?: CreaterStrategy;
+export class Creator {
+  private strategy?: CreatorStrategy;
   public dependencies = {};
   public devDependencies = {
     '@commitlint/cli': '^17.4.4',
@@ -34,7 +34,7 @@ export class Creater {
     '*.{js,jsx,ts,tsx,vue,css,less,json,md}': ['prettier --write'],
   };
 
-  constructor(public strategies: CreaterStrategy[]) {
+  constructor(public strategies: CreatorStrategy[]) {
     this.init();
   }
 
@@ -42,8 +42,9 @@ export class Creater {
     console.info(
       'Create Start Version :',
       green(
-        JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')).toString())
-          .version,
+        JSON.parse(
+          fs.readFileSync(path.join(__dirname, '../package.json')).toString(),
+        ).version,
       ),
       '\n',
     );
@@ -105,19 +106,23 @@ export class Creater {
       string: ['_'],
     });
     const targetDir: string = argv._[0];
-    let template = argv.template || argv.t;
-    const defaultProjectName = targetDir || 'project-starter';
-    const templates = this.strategies
-      .map(f => (f.variants && f.variants?.map(v => v.name)) || [f.name])
-      .reduce((a, b) => a.concat(b), []);
+    const template = argv.template || argv.t;
+    const projectName = targetDir || 'project-starter';
     const promptsStep = new PromptsStep(targetDir);
-    promptsStep.addProjectNameStep(defaultProjectName);
+    let framework: CreatorStrategy | undefined;
+    promptsStep.addProjectNameStep(projectName);
     promptsStep.addOverwriteStep();
     promptsStep.addOverwriteCheckerStep();
     promptsStep.addPackageNameStep();
-    promptsStep.addFrameworkStep(this.strategies, templates, template);
-    promptsStep.addVariantStep();
+    if (template) framework = this.strategies.find(s => s.name === template);
+    if (!framework) {
+      promptsStep.addFrameworkStep(this.strategies);
+    }
+    promptsStep.addVariantStep(framework);
     const result = await promptsStep.excute();
+    if (framework) {
+      result.framework = framework;
+    }
     if (targetDir) {
       result.projectName = targetDir;
     }

@@ -8,7 +8,7 @@ export interface Variant {
   color: (str: string | number) => string;
 }
 
-export interface CreaterStrategy {
+export interface CreatorStrategy {
   name: string;
   path: string;
   color: (str: string | number) => string;
@@ -27,7 +27,7 @@ export interface CreateOption {
   packageRoot: string;
   root: string;
   template: string;
-  framework: CreaterStrategy;
+  framework: CreatorStrategy;
   overwrite: string;
   packageJson: any
 }

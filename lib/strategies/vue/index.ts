@@ -1,9 +1,9 @@
-import { CreateOption } from "../../creater.type";
-import { CreaterStrategy, Variant } from "../../creater.type";
+import { CreateOption } from "../../creator.type";
+import { CreatorStrategy, Variant } from "../../creator.type";
 import { trueColor } from "kolorist";
 import { execSync } from "child_process";
 
-export class VueCreaterStrategy implements CreaterStrategy {
+export class VueCreaterStrategy implements CreatorStrategy {
   public name: string = "Vue";
   public path: string = "vue";
   public color = trueColor(66, 184, 131);

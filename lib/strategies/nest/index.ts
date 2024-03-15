@@ -1,11 +1,11 @@
-import { CreateOption } from "../../creater.type";
+import { CreateOption } from "../../creator.type";
 // import * as fs from "fs";
 // import * as path from "path";
-import { CreaterStrategy, Variant } from "../../creater.type";
+import { CreatorStrategy, Variant } from "../../creator.type";
 import { trueColor } from "kolorist";
 import { spawnSync } from "child_process";
 
-export class NestCreaterStrategy implements CreaterStrategy {
+export class NestCreaterStrategy implements CreatorStrategy {
   public name: string = "Nest";
   public path: string = "nest";
   public color = trueColor(237, 41, 69);

@@ -1,10 +1,10 @@
 import * as path from "path";
-import { CreateOption } from "../../creater.type";
-import { CreaterStrategy, Variant } from "../../creater.type";
+import { CreateOption } from "../../creator.type";
+import { CreatorStrategy, Variant } from "../../creator.type";
 import { trueColor } from "kolorist";
 import { copy } from "@/utils/file";
 
-export class PackageCreaterStrategy implements CreaterStrategy {
+export class PackageCreaterStrategy implements CreatorStrategy {
   public name: string = "Package";
   public path: string = "package";
   public color = trueColor(237, 41, 69);

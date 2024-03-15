@@ -1,9 +1,9 @@
-import { CreateOption } from "../../creater.type";
-import { CreaterStrategy, Variant } from "../../creater.type";
+import { CreateOption } from "../../creator.type";
+import { CreatorStrategy, Variant } from "../../creator.type";
 import { trueColor } from "kolorist";
 import { execSync } from "child_process";
 
-export class UniappCreaterStrategy implements CreaterStrategy {
+export class UniappCreaterStrategy implements CreatorStrategy {
   public name: string = "Uniapp";
   public path: string = "uniapp";
   public color = trueColor(66, 185, 131);

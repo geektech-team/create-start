@@ -1,14 +1,14 @@
-import * as fs from "fs";
-import { red } from "kolorist";
-import { reset } from "kolorist";
-import { exit } from "process";
-import prompts from "prompts";
-import { CreaterStrategy } from "./creater.type";
-import { isEmpty } from "./utils/file";
-import { isValidPackageName, toValidPackageName } from "./utils/package";
+import * as fs from 'fs';
+import { red } from 'kolorist';
+import { reset } from 'kolorist';
+import { exit } from 'process';
+import prompts from 'prompts';
+import { CreatorStrategy } from './creator.type';
+import { isEmpty } from './utils/file';
+import { isValidPackageName, toValidPackageName } from './utils/package';
 
 export interface PromptsResult {
-  framework: CreaterStrategy;
+  framework: CreatorStrategy;
   overwrite: string;
   packageName: string;
   projectName: string;
@@ -24,14 +24,13 @@ export class PromptsStep {
     this.steps.push(options);
   }
 
-  addProjectNameStep(defaultProjectName: string) {
+  addProjectNameStep(projectName: string) {
     this.addStep({
-      type: this.targetDir ? null : "text",
-      name: "projectName",
-      message: reset("Project name:"),
-      initial: defaultProjectName,
-      onState: (state) =>
-        (this.targetDir = state.value.trim() || defaultProjectName),
+      type: this.targetDir ? null : 'text',
+      name: 'projectName',
+      message: reset('Project name:'),
+      initial: projectName,
+      onState: state => (this.targetDir = state.value.trim() || projectName),
     });
   }
 
@@ -40,11 +39,11 @@ export class PromptsStep {
       type: () =>
         !fs.existsSync(this.targetDir) || isEmpty(this.targetDir)
           ? null
-          : "confirm",
-      name: "overwrite",
+          : 'confirm',
+      name: 'overwrite',
       message: () =>
-        (this.targetDir === "."
-          ? "Current directory"
+        (this.targetDir === '.'
+          ? 'Current directory'
           : `Target directory "${this.targetDir}"`) +
         ` is not empty. Remove existing files and continue?`,
     });
@@ -54,46 +53,34 @@ export class PromptsStep {
     this.addStep({
       type: (_, answers) => {
         if (answers?.overwrite === false) {
-          throw new Error(red("✖") + " Operation cancelled");
+          throw new Error(red('✖') + ' Operation cancelled');
         }
         return null;
       },
-      name: "overwriteChecker",
-      message: red("✖") + " Operation cancelled",
+      name: 'overwriteChecker',
+      message: red('✖') + ' Operation cancelled',
     });
   }
 
   addPackageNameStep() {
     this.addStep({
-      type: () => (isValidPackageName(this.targetDir) ? null : "text"),
-      name: "packageName",
-      message: reset("Package name:"),
+      type: () => (isValidPackageName(this.targetDir) ? null : 'text'),
+      name: 'packageName',
+      message: reset('Package name:'),
       initial: () => toValidPackageName(this.targetDir),
-      validate: (dir) => isValidPackageName(dir) || "Invalid package.json name",
+      validate: dir => isValidPackageName(dir) || 'Invalid package.json name',
     });
   }
 
-  addFrameworkStep(
-    strategys: CreaterStrategy[],
-    templates: string[],
-    template?: string
-  ) {
-    const hasIncludeTemplate = template && templates.includes(template);
+  addFrameworkStep(strategys: CreatorStrategy[]) {
     this.addStep({
-      type: hasIncludeTemplate ? null : "select",
-      name: "framework",
+      type: 'select',
+      name: 'framework',
       message: () => {
-        if (!hasIncludeTemplate) {
-          if (template) {
-            return reset(
-              `"${template}" isn't a valid template. Please choose from below: `
-            );
-          }
-        }
-        return reset("Select a framework:");
+        return reset('Select a framework:');
       },
       initial: 0,
-      choices: strategys.map((framework) => {
+      choices: strategys.map(framework => {
         return {
           title: framework.color(framework.name),
           value: framework,
@@ -102,15 +89,14 @@ export class PromptsStep {
     });
   }
 
-  addVariantStep() {
+  addVariantStep(strategy?: CreatorStrategy) {
     this.addStep({
-      type: (framework) =>
-        framework && framework.variants.length ? "select" : null,
-      name: "variant",
-      message: reset("Select a variant:"),
-      // @ts-ignore
-      choices: (framework) =>
-        framework.variants.map((variant) => {
+      type: framework =>
+        (framework?.variants || strategy?.variants)?.length ? 'select' : null,
+      name: 'variant',
+      message: reset('Select a variant:'),
+      choices: (framework: CreatorStrategy) =>
+        (framework?.variants || strategy?.variants).map(variant => {
           const variantColor = variant.color;
           return {
             title: variantColor(variant.name),
@@ -121,11 +107,11 @@ export class PromptsStep {
   }
 
   async excute(): Promise<PromptsResult> {
-    let result = {};
+    let result: PromptsResult;
     try {
       result = await prompts(this.steps, {
         onCancel: () => {
-          throw new Error(red("✖") + " Operation cancelled");
+          throw new Error(red('✖') + ' Operation cancelled');
         },
       });
     } catch (cancelled) {

@@ -9,10 +9,11 @@
             "type": "node",
             "request": "launch",
             "runtimeArgs": [
-                "run",
-                "create"
+                "bin/index.js",
+                "project-starter",
+                "--debug"
             ],
-            "runtimeExecutable": "npm",
+            "runtimeExecutable": "node",
             "skipFiles": [
                 "<node_internals>/**"
             ],
