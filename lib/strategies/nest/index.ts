@@ -11,7 +11,7 @@ export class NestCreaterStrategy implements CreatorStrategy {
   public color = trueColor(237, 41, 69);
   public variants?: Variant[] | undefined = [];
   public dependencies = {
-    "@geektech/nest-core": "^3.0.0",
+    "@geektech/nest-core": "^3.2.0",
   };
   public devDependencies = {};
   public scripts = {
