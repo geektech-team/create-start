@@ -21,5 +21,22 @@
         "<node_internals>/**"
       ],
     },
+    {
+      "name": "start-prod:qaa",
+      "request": "launch",
+      "type": "node",
+      "console": "integratedTerminal",
+      "runtimeArgs": [
+        "run",
+        "start:prod"
+      ],
+      "env": {
+        "IDC": "qa_a",
+      },
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
   ]
 }
