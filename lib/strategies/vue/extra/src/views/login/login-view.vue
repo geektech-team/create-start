@@ -10,7 +10,7 @@ const COMPONENT = 'login-view';
 const props = defineProps<{ redirect?: string }>();
 
 const onLogin = () => {
-  localStorage.set(AUTH_TOKEN, '123456');
+  localStorage.setItem(AUTH_TOKEN, '123456');
   if (props.redirect) {
     location.href = props.redirect;
   } else {

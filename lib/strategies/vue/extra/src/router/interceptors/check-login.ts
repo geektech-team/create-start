@@ -9,7 +9,7 @@ export const checkLogin = (
 ) => {
   if (to.meta.requiresAuth) {
     // 判断是否已经登录
-    if (localStorage.get(AUTH_TOKEN)) {
+    if (localStorage.getItem(AUTH_TOKEN)) {
       next();
     } else {
       eventBus.emit('login-expired');
