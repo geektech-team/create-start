@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { addToken } from './interceptors/add-token';
 import { catchLoginExpired } from './interceptors/catch-login-expired';
+import { queryArrayToString } from './interceptors/query-array-to-string';
 
 export interface Pagination {
   length: number;
@@ -14,6 +15,7 @@ export interface HttpResponse<T = unknown> {
   pagination?: Pagination;
 }
 
+axios.interceptors.request.use(queryArrayToString);
 axios.interceptors.request.use(addToken);
 axios.interceptors.response.use(catchLoginExpired);
 
